@@ -1,29 +1,44 @@
 (function(){
-document.getElementById("myHeading").innerHTML = "Dylan";
-document.querySelector ("nav ul li").setAttribute('class', 'currentPage');
+//start
 
-document.addEventListener("click", function(){
-console.info("hi")
-})
 
-document.querySelector(".red").addEventListener('click', function(ev){
-    document.querySelector('body').setAttribute('class', 'redBack')
-})
+//colour picker
+var colourButtons = document.querySelectorAll(".colPicker");
+for (var i = 0; i < colourButtons.length; i++){
+    colourButtons[i].addEventListener("click", chgColour)
+}
 
-document.querySelector('.green').addEventListener('click', function(ev){
-    document.querySelector('body').setAttribute('class', 'greenBack')
-})
+function chgColour(ev){
+    console.dir(ev.target.classList[0]);
+    var colourPicked = ev.target.classList[0] + "Back";
+    document.querySelector("body").setAttribute("class", colourPicked)            
+}
 
-document.querySelector('.blue').addEventListener('click', function(ev){
-    document.querySelector('body').setAttribute('class', 'blueBack')
-})
 
-document.querySelector('.yellow').addEventListener('click', function(ev){
-    document.querySelector('body').setAttribute('class', 'yellowBack')
-})
 
-document.querySelector('.reset').addEventListener('click', function(ev){
-    document.querySelector('body').removeAttribute('class')
-})
+//image rotator
+var imageAr = [
+    "images/view1.jpg",
+    "images/view2.jpg",
+    "images/view3.jpg",
+    "images/view4.jpg",
+    "images/view5.jpg",
+    "images/view6.jpg"
+]
+
+
+setInterval(chgImage, 1000);
+var imgCounter = 0;
+
+function chgImage(){
+    document.getElementById("myImages").setAttribute("src" , imageAr[imgCounter]);
+    imgCounter++;
+    if (imgCounter == imageAr.length)
+    {
+        imgCounter = 0;
+    }
+}
+chgImage();
+
 })();
 
